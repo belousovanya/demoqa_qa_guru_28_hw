@@ -5,7 +5,7 @@ import pages.RegistrationPage;
 import pages.components.ResultTableComponent;
 import utils.TestData;
 
-public class StudentRegistrationFormTestsWithFaker extends TestBase {
+public class StudentRegistrationFormWithFakerTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
     ResultTableComponent resultTableComponent = new ResultTableComponent();
