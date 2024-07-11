@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 public class OutputTextBoxComponent {
-    public SelenideElement userNameOutput = $("#output #name"),
+    private final SelenideElement userNameOutput = $("#output #name"),
             userEmailOutput = $("#output #email"),
             currentAddressOutput = $("#output #currentAddress"),
             permanentAddressOutput = $("#output #permanentAddress");
