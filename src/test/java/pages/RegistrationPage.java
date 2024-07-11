@@ -4,11 +4,10 @@ import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
-    public SelenideElement firstNameInput = $("#firstName"),
+    private final SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),
             genderWrapper = $("#genterWrapper"),
@@ -28,6 +27,12 @@ public class RegistrationPage {
 
     public RegistrationPage openRegistrationPage() {
         open("/automation-practice-form");
+        return this;
+    }
+
+    public RegistrationPage removeBanner() {
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
         return this;
     }
 
@@ -56,11 +61,15 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setDateOfBirthInput(String day, String month, String year) {
+    public RegistrationPage setDateOfBirthInput(String birthDate) {
         dateOfBirth.click();
+        String[] dateParts = birthDate.split(" ");
+        String day = dateParts[0];
+        String month = dateParts[1];
+        String year = dateParts[2];
         calendarComponent.setDate(day, month, year);
         return this;
-    }
+        }
 
     public RegistrationPage setSubjectsInput(String value) {
         subjectsInput.setValue(value).pressEnter();
