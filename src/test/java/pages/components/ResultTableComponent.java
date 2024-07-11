@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class ResultTableComponent {
-    public SelenideElement resultHeader = $("#example-modal-sizes-title-lg"),
+    private final SelenideElement resultHeader = $("#example-modal-sizes-title-lg"),
             resultTable = $(".table-responsive");
 
     public ResultTableComponent checkResultHeader(String value) {
@@ -17,12 +17,21 @@ public class ResultTableComponent {
     }
 
     public ResultTableComponent checkResultTable(String key, String value) {
-        resultTable.$(byText(key)).sibling(0).shouldHave(exactText(value));
+        if (key.equals("Date of Birth")) {
+            resultTable.$(byText(key)).sibling(0).shouldHave(exactText(formatDateForChecking(value)));
+        } else {
+            resultTable.$(byText(key)).sibling(0).shouldHave(exactText(value));
+        }
         return this;
     }
 
     public ResultTableComponent tableDoesntExist() {
         resultTable.shouldNotBe(exist);
         return this;
+    }
+
+    private String formatDateForChecking(String date) {
+        String[] dateParts = date.split(" ");
+        return dateParts[0] + " " + dateParts[1] + "," + dateParts[2];
     }
 }
