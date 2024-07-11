@@ -14,12 +14,13 @@ public class StudentRegistrationFormWithFakerTests extends TestBase {
     @Test
     public void successfulRegistrationWithFakerTest() {
         registrationPage.openRegistrationPage()
+                .removeBanner()
                 .setFirstNameInput(testData.firstName)
                 .setLastNameInput(testData.lastName)
                 .setUserEmailInput(testData.userEmail)
                 .setGenderWrapper(testData.userGender)
                 .setUserNumberInput(testData.userNumber)
-                .setDateOfBirthInput(testData.userBirthDay, testData.userBirthMonth, testData.userBirthYear)
+                .setDateOfBirthInput(testData.userBirthDate)
                 .setSubjectsInput(testData.subjects)
                 .setHobbiesWrapper(testData.userHobbies)
                 .setUploadPicture(testData.uploadUserPicture)
@@ -33,7 +34,7 @@ public class StudentRegistrationFormWithFakerTests extends TestBase {
                 .checkResultTable("Student Email", testData.userEmail)
                 .checkResultTable("Gender", testData.userGender)
                 .checkResultTable("Mobile", testData.userNumber)
-                .checkResultTable("Date of Birth", testData.userBirthDay + " " + testData.userBirthMonth + "," + testData.userBirthYear)
+                .checkResultTable("Date of Birth", testData.userBirthDate)
                 .checkResultTable("Subjects", testData.subjects)
                 .checkResultTable("Hobbies", testData.userHobbies)
                 .checkResultTable("Picture", testData.uploadUserPicture)
@@ -44,6 +45,7 @@ public class StudentRegistrationFormWithFakerTests extends TestBase {
     @Test
     public void successfulRegistrationUsingRequiredFieldsWithFakerTest() {
         registrationPage.openRegistrationPage()
+                .removeBanner()
                 .setFirstNameInput(testData.firstName)
                 .setLastNameInput(testData.lastName)
                 .setGenderWrapper(testData.userGender)
@@ -59,6 +61,7 @@ public class StudentRegistrationFormWithFakerTests extends TestBase {
     @Test
     public void RegistrationWithoutFirstNameWithFakerTest() {
         registrationPage.openRegistrationPage()
+                .removeBanner()
                 .setLastNameInput(testData.lastName)
                 .setGenderWrapper(testData.userGender)
                 .setUserNumberInput(testData.userNumber)
