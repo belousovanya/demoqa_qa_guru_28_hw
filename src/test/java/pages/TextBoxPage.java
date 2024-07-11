@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class TextBoxPage {
-    public SelenideElement userNameInput = $("#userName"),
+    private final SelenideElement userNameInput = $("#userName"),
             userEmailInput = $("#userEmail"),
             currentAddressInput = $("#currentAddress"),
             permanentAddressInput = $("#permanentAddress"),
@@ -27,7 +27,7 @@ public class TextBoxPage {
         return this;
     }
 
-    public TextBoxPage setCurrentAddressInput (String value) {
+    public TextBoxPage setCurrentAddressInput(String value) {
         currentAddressInput.setValue(value);
         return this;
     }
