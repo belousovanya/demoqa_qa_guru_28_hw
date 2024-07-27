@@ -1,10 +1,12 @@
 package tests;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import pages.components.ResultTableComponent;
 import utils.TestData;
 
+@Tag("smoke")
 public class StudentRegistrationFormWithFakerTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
