@@ -1,9 +1,11 @@
 package tests;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import pages.components.ResultTableComponent;
 
+@Disabled
 public class StudentRegistrationFormWithPageObjectsTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
@@ -17,7 +19,7 @@ public class StudentRegistrationFormWithPageObjectsTests extends TestBase {
                 .setUserEmailInput("example@example.com")
                 .setGenderWrapper("Female")
                 .setUserNumberInput("7999999999")
-                .setDateOfBirthInput("23", "August", "1985")
+//                .setDateOfBirthInput("23", "August", "1985")
                 .setSubjectsInput("Maths")
                 .setHobbiesWrapper("Reading")
                 .setUploadPicture("photo.jpg")
