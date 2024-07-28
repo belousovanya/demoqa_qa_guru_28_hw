@@ -1,35 +1,53 @@
 plugins {
     id 'java-library'
+    id 'io.qameta.allure' version "2.11.2"
 }
 
 repositories {
     mavenCentral()
 }
 
+def allureVersion = "2.27.0"
+def selenideVersion = "7.2.3"
+
+allure {
+    report {
+        version.set(allureVersion)
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set(allureVersion)
+            }
+        }
+    }
+}
+
 dependencies {
     testImplementation(
             "org.junit.jupiter:junit-jupiter:5.10.0",
-            "com.codeborne:selenide:7.2.1",
+            "com.codeborne:selenide:$selenideVersion",
             "org.slf4j:slf4j-simple:2.0.7",
-            "com.github.javafaker:javafaker:1.0.2"
+            "com.github.javafaker:javafaker:1.0.2",
+            "io.qameta.allure:allure-selenide:$allureVersion"
     )
 }
 
 tasks.withType(Test) {
     useJUnitPlatform()
-
     testLogging {
-        lifecycle {
-            events "started", "skipped", "failed", "standard_error", "standard_out"
-            exceptionFormat "short"
-        }
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        showStandardStreams = true
     }
 }
 
-task registration_page(type: Test) {
+task registration_test(type: Test) {
     useJUnitPlatform {
-        includeTags("simple")
+        includeTags("smoke")
+    }
+    testLogging {
+        events "passed", "skipped", "failed"
+
     }
 }
-
-
